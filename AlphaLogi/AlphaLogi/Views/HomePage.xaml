@@ -13,18 +13,26 @@
         </StackLayout>
     </NavigationPage.TitleView>
 
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.8*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <StackLayout Margin="10">
+        
 
         <Image x:Name="takenImage"
-               Grid.Row="0"
                Aspect="AspectFit"/>
+        <ActivityIndicator Color="Purple"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           IsVisible="False"
+                           IsRunning="False"
+                           x:Name="predictionIndicator"/>
+        <Label x:Name="labelPredictionName"
+               FontSize="Medium"
+               TextColor="Black"/>
+
+        <Label x:Name="labelPrediction"
+               FontSize="Medium"
+               TextColor="Black"/>
 
         <Button x:Name="takePhotoButton"
-                Grid.Row="1"
                 BackgroundColor="Purple"
                 Text="Fotoğraf Çek"
                 TextColor="White"
@@ -32,5 +40,5 @@
                 CornerRadius="20"
                 ImageSource="camera"
                 Clicked="takePhotoButton_Clicked"/>
-    </Grid>
+    </StackLayout>
 </ContentPage>
