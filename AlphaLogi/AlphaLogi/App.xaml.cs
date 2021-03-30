@@ -1,4 +1,5 @@
 ﻿using System;
+using AlphaLogi.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace AlphaLogi
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new HomePage()) { BarBackgroundColor = Color.Purple };
         }
 
         protected override void OnStart()
