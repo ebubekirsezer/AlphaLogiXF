@@ -40,6 +40,9 @@ namespace AlphaLogi.Views
 
         private async void GetPredictions(string imageFilePath)
         {
+            predictionIndicator.IsVisible = true;
+            predictionIndicator.IsRunning = true;
+
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("Prediction-Key", Constants.predictionKey);
 
@@ -53,8 +56,13 @@ namespace AlphaLogi.Views
                 string contentString = await response.Content.ReadAsStringAsync();
 
                 AzureModel model = JsonConvert.DeserializeObject<AzureModel>(contentString);
-                Console.WriteLine(model.Predictions[0].TagName);
+                var prediction = model.Predictions[0];
+                labelPredictionName.Text = "Obje: " + prediction.TagName;
+                labelPrediction.Text = "Olasılık: " + prediction.Probability;
             }
+
+            predictionIndicator.IsVisible = false;
+            predictionIndicator.IsRunning = false;
         }
 
         public byte[] GetImageAsByteArray(string imageFilePath)
