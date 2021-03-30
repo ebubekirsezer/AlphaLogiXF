@@ -8,31 +8,29 @@ namespace AlphaLogi.Views
 {
     public partial class HomePage : ContentPage
     {
+        bool isCaptured = false;
+
         public HomePage()
         {
             InitializeComponent();
         }
 
-        async void ButtonImage_Clicked(System.Object sender, System.EventArgs e)
+        protected override void OnAppearing()
         {
-            try
+            base.OnAppearing();
+            if (isCaptured == false)
             {
-                var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
-                {
-                    Title = "Please pick a photo"
-                });
-
-                var stream = await result.OpenReadAsync();
-
-                resultImage.Source = ImageSource.FromStream(() => stream);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
+                TakePhoto();
+                isCaptured = true;
             }
         }
 
-        async void takeImage_Clicked(System.Object sender, System.EventArgs e)
+        void takePhotoButton_Clicked(System.Object sender, System.EventArgs e)
+        {
+            TakePhoto();
+        }
+
+        private async void TakePhoto()
         {
             try
             {
@@ -45,15 +43,32 @@ namespace AlphaLogi.Views
 
                 if (ImageSource.FromStream(() => stream) != null)
                 {
-                    resultImage.Source = ImageSource.FromStream(() => stream);
+                    takenImage.Source = ImageSource.FromStream(() => stream);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
+        }
 
-            
+        private async void PickPhoto()
+        {
+            try
+            {
+                var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Please pick a photo"
+                });
+
+                var stream = await result.OpenReadAsync();
+
+                takenImage.Source = ImageSource.FromStream(() => stream);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

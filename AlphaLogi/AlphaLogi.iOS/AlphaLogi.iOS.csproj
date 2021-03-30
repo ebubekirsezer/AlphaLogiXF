@@ -135,4 +135,9 @@
       <Name>AlphaLogi</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\camera.png" />
+    <BundleResource Include="Resources\camera%402x.png" />
+    <BundleResource Include="Resources\camera%403x.png" />
+  </ItemGroup>
 </Project>

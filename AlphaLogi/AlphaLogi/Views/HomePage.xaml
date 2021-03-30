@@ -13,14 +13,24 @@
         </StackLayout>
     </NavigationPage.TitleView>
 
-    <StackLayout VerticalOptions="Center"
-                 HorizontalOptions="Center">
-        <Label Text="Alpha Logi"/>
-        <Button Text="Pick Image"
-                Clicked="ButtonImage_Clicked"/>
-        <Button Text="Capture Image"
-                x:Name="takeImage"
-                Clicked="takeImage_Clicked"/>
-        <Image x:Name="resultImage"/>
-    </StackLayout>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image x:Name="takenImage"
+               Grid.Row="0"
+               Aspect="AspectFit"/>
+
+        <Button x:Name="takePhotoButton"
+                Grid.Row="1"
+                BackgroundColor="Purple"
+                Text="Fotoğraf Çek"
+                TextColor="White"
+                HeightRequest="50"
+                CornerRadius="20"
+                ImageSource="camera"
+                Clicked="takePhotoButton_Clicked"/>
+    </Grid>
 </ContentPage>
