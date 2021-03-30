@@ -11,7 +11,7 @@ namespace AlphaLogi
         {
             InitializeComponent();
 
-            MainPage = new HomePage();
+            MainPage = new NavigationPage(new HomePage()) { BarBackgroundColor = Color.Purple };
         }
 
         protected override void OnStart()
