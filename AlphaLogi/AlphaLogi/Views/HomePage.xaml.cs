@@ -4,6 +4,8 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using AlphaLogi.Models;
+using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Essentials;
@@ -50,7 +52,8 @@ namespace AlphaLogi.Views
                 response = await client.PostAsync(Constants.uriBase, content);
                 string contentString = await response.Content.ReadAsStringAsync();
 
-                Console.WriteLine(contentString);
+                AzureModel model = JsonConvert.DeserializeObject<AzureModel>(contentString);
+                Console.WriteLine(model.Predictions[0].TagName);
             }
         }
 
